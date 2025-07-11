@@ -1,0 +1,29 @@
+server:
+  servlet:
+    context-path: /login-services
+  port: 8085
+
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: ikm
+
+  liquibase:
+    enabled: 'true'
+    drop-first: 'false'
+    change-log: classpath:/db/changelog/changelog-master.xml
+
+  cloud:
+    compatibility-verifier:
+      enabled : false
+
+logging:
+  level:
+    liquibase: DEBUG
+
+service:
+  user:
+    url: http://localhost:8083/user-services
+
