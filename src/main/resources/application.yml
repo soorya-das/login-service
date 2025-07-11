@@ -1,0 +1,32 @@
+
+server:
+  servlet:
+    context-path: /emp-services
+  port: 8080
+
+spring:
+  profiles:
+    active: local
+
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: ${POSTGRES_URL}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 30000
+
+  liquibase:
+    enabled: 'true'
+    drop-first: 'false'
+    change-log: classpath:/db/changelog/changelog-master.xml
+
+  cloud:
+    compatibility-verifier:
+      enabled: false
+
+service:
+  user:
+    url: ${USER_URL}
