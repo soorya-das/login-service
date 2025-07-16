@@ -5,8 +5,6 @@ server:
   port: 8080
 
 spring:
-  profiles:
-    active: local
 
   datasource:
     driverClassName: org.postgresql.Driver
