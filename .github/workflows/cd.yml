@@ -1,0 +1,33 @@
+name: Continuous Deployment
+
+on:
+  push:
+    branches:
+      - develop
+      - main
+
+permissions:
+  contents: read
+  packages: write
+
+
+jobs:
+  call-cd-jobs:
+    uses: soorya-das/devops-workflow/.github/workflows/cd.yml@main
+    with:
+      image-name: login-service
+      chart-name: login-service
+      service-name: login-service-dev
+      namespace: learning
+      cluster-name: login-service
+      working-directory: ./provisioning/dev
+    secrets:
+      MAVEN_USERNAME: ${{ secrets.GIT_USERNAME }}
+      MAVEN_PASSWORD: ${{ secrets.GIT_TOKEN }}
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      DOCKER_PASSWORD: ${{ secrets.DOCKER_TOKEN }}
+#      KUBECONFIG_CONTENT: ${{ secrets.KUBECONFIG_CONTENT }}
+#      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#      RDS_SECRET_ARN: ${{ secrets.RDS_SECRET_ARN }}
+
