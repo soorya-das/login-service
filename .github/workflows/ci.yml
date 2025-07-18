@@ -1,0 +1,21 @@
+name: Continuous Integration
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  call-ci-job:
+    uses: soorya-das/devops-workflow/.github/workflows/ci.yml@main
+    with:
+      pr-title: "^LOGIN-.*: .*"
+      project-key: login-service
+      sonar-check-enabled: false
+      package-name: "ot.learning.login-service"
+
+    secrets:
+      github-token: ${{ secrets.GIT_TOKEN }}
+      github-username: ${{ secrets.GIT_USERNAME }}
+
+
